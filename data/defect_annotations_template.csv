@@ -1,0 +1,1 @@
+annotation_id,sample_id,lot_id,wafer_id,architecture,die_row,die_col,chip_id,x_image_px,y_image_px,bbox_x_image_px,bbox_y_image_px,bbox_width_px,bbox_height_px,defect_type,severity,confirmed,annotator,annotation_date,evidence,notes
