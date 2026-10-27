@@ -1,0 +1,66 @@
+{
+  "DRAM": {
+    "fixed_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.23333333333333334,
+      "mean_error_px": 274.7081208648987,
+      "median_error_px": 303.7145543076499,
+      "p95_error_px": 535.6953149652581,
+      "max_error_px": 600.0,
+      "mean_latency_ms": 12.9730009999984,
+      "p95_latency_ms": 16.991276899997843
+    },
+    "multiscale_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.23333333333333334,
+      "mean_error_px": 302.81474298664904,
+      "median_error_px": 358.2815842010707,
+      "p95_error_px": 535.6953149652581,
+      "max_error_px": 600.0,
+      "mean_latency_ms": 92.52020680000234,
+      "p95_latency_ms": 101.15009255000302
+    },
+    "center_aware_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.7,
+      "mean_error_px": 24.09494302453122,
+      "median_error_px": 0.7071067811865476,
+      "p95_error_px": 107.39999999999992,
+      "max_error_px": 128.0,
+      "mean_latency_ms": 152.8555990333321,
+      "p95_latency_ms": 164.59309334999546
+    }
+  },
+  "FinFET": {
+    "fixed_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.03333333333333333,
+      "mean_error_px": 388.1656958188897,
+      "median_error_px": 406.36350444970736,
+      "p95_error_px": 618.9293803909322,
+      "max_error_px": 640.2015307698038,
+      "mean_latency_ms": 12.765162833339142,
+      "p95_latency_ms": 17.23563275001112
+    },
+    "multiscale_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.03333333333333333,
+      "mean_error_px": 377.89983340263603,
+      "median_error_px": 403.2626863825419,
+      "p95_error_px": 614.0736876019437,
+      "max_error_px": 634.4170552562407,
+      "mean_latency_ms": 87.42915443333743,
+      "p95_latency_ms": 94.0491730000076
+    },
+    "center_aware_ncc": {
+      "n": 30,
+      "accuracy_within_tolerance": 0.3,
+      "mean_error_px": 51.44131808421834,
+      "median_error_px": 55.75112610327732,
+      "p95_error_px": 102.96541413231786,
+      "max_error_px": 216.33885457772027,
+      "mean_latency_ms": 148.44257070000236,
+      "p95_latency_ms": 164.65618845000023
+    }
+  }
+}
