@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.DS_Store
+# Generated input images are created deterministically by the project bootstrap.
+results/baseline/*/reference/*.png
+results/baseline/*/search/*.png
+work_results/
+data/sources/
+data/generated/
+# Trained experimental weights are generated artifacts, not default inference dependencies.
+*.joblib
+
+# Transient notebook and test outputs
+.ipynb_checkpoints/
