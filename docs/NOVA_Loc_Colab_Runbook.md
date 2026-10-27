@@ -8,7 +8,7 @@ This repository is a Python research notebook and CLI only (no UI/server/API).
    `https://colab.research.google.com/github/RAJARYANSINGH0059/SemiRestore/blob/main/notebooks/SemiRestore_Research.ipynb`
 2. Run the first setup cell. It clones the public repository; if that is unavailable, it asks you to upload a repository ZIP.
 3. Select **Runtime → Run all**. Missing synthetic sample images are recreated from the fixed-seed generator.
-4. The default notebook loads the saved 480-row benchmark ledger, runs fresh one-pair inference, builds the inspection report and runs tests.
+4. The default notebook loads the saved 480-row benchmark ledger, runs fresh one-pair inference, builds the inspection report and output tables, and skips nested-subprocess tests by default. The original bootstrap failure was caused by overly strict root checks; the updated code now detects the project from core files after either a clone or ZIP extraction.
 
 ## One-pair CLI
 
@@ -40,3 +40,13 @@ Or set `RUN_FULL_HOLDOUT_BENCHMARK=True` in the notebook. The learned ranker exp
 ## Save outputs
 
 In Colab, outputs live under `/content/SemiRestore/results/`. Copy the `results/` folder into Drive before disconnecting; Colab runtime storage is temporary.
+
+## Run regression tests separately
+
+The notebook has `RUN_AUTOMATED_TESTS=False` by default because its test suite launches nested Python subprocesses, which can be unstable when combined with image-report generation in constrained notebook runtimes. After setup, run the test suite in a fresh Colab cell/runtime:
+
+```bash
+python -m pytest -q
+```
+
+The development environment passed 16/16 tests. This does not establish real-wafer accuracy; the bundled pairs are synthetic.
