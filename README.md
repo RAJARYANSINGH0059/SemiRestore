@@ -38,7 +38,7 @@ The core objective is **repeatable localization with traceable uncertainty and f
 
 The supplied workflow illustration is retained here in compressed form:
 
-**Workflow diagram:** The supplied workflow and presentation audit are documented in [`docs/source_deck_audit.md`](docs/source_deck_audit.md) and [`docs/proposal.md`](docs/proposal.md).
+![Supplied wafer inspection workflow](docs/assets/wafer_inspection_workflow.jpg)
 
 ### What is and is not meant by “defect detection”
 
@@ -77,15 +77,16 @@ The proposed context-ring score in the original protocol needs a larger referenc
 2. In Colab, click **Runtime → Run all**. The bootstrap cell first tries to clone `https://github.com/RAJARYANSINGH0059/SemiRestore.git`; if that repository is not available yet, it falls back to a project ZIP upload.
 3. The bootstrap checks required imports and installs `requirements.txt` only if packages are missing.
 4. It creates only missing synthetic sample images using the fixed-seed source generator; any existing image files are preserved.
-5. The notebook checks the dataset contract, runs a live CLI inference, reads the saved 480-prediction benchmark and ablation evidence, produces inspection tables/annotated images, executes the regression suite and displays the source-integrated findings. The full live benchmark and the separate-seed ranker experiment can be enabled explicitly in the configuration cell.
+5. The notebook checks the dataset contract, runs a fresh one-pair CLI inference, loads the recorded benchmark summary, creates the inspection tables/annotated images, and displays the key source-integrated findings. Regression tests, full benchmark recomputation, and the separate-seed ranker experiment are separate switches so the main inspection flow remains stable on hosted notebook runtimes.
 
-The default **Runtime → Run all** performs fresh CLI inference, creates inspection tables and annotated images, loads the recorded benchmark/ablation evidence, checks the optional dataset-factory interfaces, and runs regression tests. The complete benchmark recomputation and fresh ML experiment are opt-in so the default run completes reliably on CPU:
+The default **Runtime → Run all** runs bootstrap, one-pair inference, the compact benchmark tables, the inspection report, and the optional-section status messages. It does not start a web app/API or automatically run the nested-subprocess test suite. The full benchmark and fresh ML experiment are opt-in:
 
 ```python
 RUN_FULL_HOLDOUT_BENCHMARK = False # skip live recomputation; use the saved ledger
 RUN_ML_STRUCTURE_ABLATION = False  # skip separate-seed model experiment
 RUN_INSPECTION_REPORT = True       # site / chip / anomaly tables and annotated images
 RUN_UNIFIED_FACTORY = False        # requires source images you provide under their licenses
+RUN_AUTOMATED_TESTS = False        # run separately; tests launch nested subprocesses
 SHOW_BENCHMARK_PLOTS = False       # simple visual outputs by default
 ```
 
@@ -106,7 +107,7 @@ python scripts/prepare_synthetic_dataset.py
 python -m pytest -q
 ```
 
-The 60 generated reference/search pairs are deliberately not stored as 120 large PNGs in this code-first repository. Their ground-truth CSVs are kept, and `src/generator.py` recreates them from fixed seeds. Pixel values may differ slightly across OpenCV/Pillow/NumPy versions (occasionally by one gray level). The saved 480-row ledger records the original supplied PNG bytes and is best treated as the source-run reference. Set `RUN_FULL_HOLDOUT_BENCHMARK = True` to recompute metrics and hashes on the images generated in your current runtime. This avoids bloating clone/download size while keeping the benchmark runnable.
+The 60 generated reference/search pairs are deliberately not stored as 120 large PNGs in this code-first repository. Their ground-truth CSVs are kept, and `src/generator.py` recreates them from fixed seeds. Pixel values may differ slightly across OpenCV/Pillow/NumPy versions (occasionally by one gray level). The saved 480-row ledger records the original supplied PNG bytes and is best treated as the source-run reference. The bootstrap checks the image hashes and warns if regenerated PNGs differ slightly. The default inspection report uses the saved predictions matched by sample ID; set `RUN_FULL_HOLDOUT_BENCHMARK = True` to recompute all 480 predictions on the exact image bytes generated in the current runtime. This avoids bloating clone/download size while keeping the benchmark runnable.
 
 ## Command-line inference
 
@@ -175,7 +176,7 @@ python scripts/build_inspection_report.py \
 
 Do not set dimensions unless they are accurate for the input image. The bundled synthetic examples default to one inspection field per image, so their local coordinates equal their image coordinates.
 
-**Example output:** Run the notebook or `scripts/build_inspection_report.py` to generate the annotated reference/search overlay and coordinate CSVs in `results/inspection_report/`.
+![Example localized inspection image](docs/assets/inspection_overlay_example.jpg)
 
 ### Coordinate semantics
 
@@ -305,14 +306,13 @@ Accuracy at tolerance `τ` is the fraction of examples with `e ≤ τ`, typicall
 
 ## Tests and reproducibility
 
-Run:
+Run the tests from a shell / a fresh Colab cell, after the setup cell has completed:
 
 ```bash
-python scripts/prepare_synthetic_dataset.py
 python -m pytest -q
 ```
 
-The suite covers input file decoding, repeated inference on fixed inputs, missing-file and invalid-configuration handling, evaluator CLI stdout contract, 480-row ledger completeness, centered-vs-translated degradation, chip-local coordinate transforms, simple overlay generation, report schema, optional ground-truth absence, and expert-label coordinate mapping.
+The notebook setting `RUN_AUTOMATED_TESTS` defaults to `False` because the test suite launches child Python processes; run it separately instead of immediately after the report pipeline in constrained notebook kernels. The suite covers input file decoding, repeated inference on fixed inputs, missing-file and invalid-configuration handling, evaluator CLI stdout contract, 480-row ledger completeness, centered-vs-translated degradation, chip-local coordinate transforms, simple overlay generation, report schema, optional ground-truth absence, and expert-label coordinate mapping. The suite has passed 16/16 tests in the development environment.
 
 GitHub Actions runs the preparation script and test suite on pushes and pull requests. The generated pairs use fixed seed `20260816` for the base generator; the translated benchmark uses deterministic seed `930091`. The loader only creates missing images, so existing files are not silently overwritten. The test suite validates software behavior and saved synthetic fixtures, not real wafer performance.
 
