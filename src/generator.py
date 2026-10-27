@@ -1,6 +1,1 @@
-#!/usr/bin/env python3
-"""NOVA-Loc synthetic paired-image generator.
-
-This source is published from the uploaded SemiRestore project. Use the repository
-README for reproducibility settings and limitations.
-"""
+The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
