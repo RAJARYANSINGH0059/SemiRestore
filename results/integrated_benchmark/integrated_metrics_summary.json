@@ -1,0 +1,334 @@
+{
+  "holdout_centered": {
+    "B1_fixed_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.13333333333333333,
+        "accuracy_2px": 0.13333333333333333,
+        "accuracy_5px": 0.13333333333333333,
+        "accuracy_10px": 0.13333333333333333,
+        "mean_error_px": 331.4369083418941,
+        "median_error_px": 350.86821005984837,
+        "p95_error_px": 600.0,
+        "max_error_px": 640.2015307698038,
+        "mean_latency_ms": 36.84766644999703,
+        "p95_latency_ms": 49.53302374992741
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.23333333333333334,
+        "accuracy_2px": 0.23333333333333334,
+        "accuracy_5px": 0.23333333333333334,
+        "accuracy_10px": 0.23333333333333334,
+        "mean_error_px": 274.7081208648987,
+        "median_error_px": 303.7145543076499,
+        "p95_error_px": 535.6953149652581,
+        "max_error_px": 600.0,
+        "mean_latency_ms": 36.21989886666294,
+        "p95_latency_ms": 51.970812599915845
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.03333333333333333,
+        "accuracy_2px": 0.03333333333333333,
+        "accuracy_5px": 0.03333333333333333,
+        "accuracy_10px": 0.03333333333333333,
+        "mean_error_px": 388.1656958188897,
+        "median_error_px": 406.36350444970736,
+        "p95_error_px": 618.9293803909322,
+        "max_error_px": 640.2015307698038,
+        "mean_latency_ms": 37.47543403333111,
+        "p95_latency_ms": 48.38753905004296
+      }
+    },
+    "B2_multiscale_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.13333333333333333,
+        "accuracy_2px": 0.13333333333333333,
+        "accuracy_5px": 0.13333333333333333,
+        "accuracy_10px": 0.13333333333333333,
+        "mean_error_px": 340.3572881946424,
+        "median_error_px": 370.8575741549828,
+        "p95_error_px": 600.0,
+        "max_error_px": 634.4170552562407,
+        "mean_latency_ms": 177.780675516658,
+        "p95_latency_ms": 216.41329189999396
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.23333333333333334,
+        "accuracy_2px": 0.23333333333333334,
+        "accuracy_5px": 0.23333333333333334,
+        "accuracy_10px": 0.23333333333333334,
+        "mean_error_px": 302.81474298664904,
+        "median_error_px": 358.2815842010707,
+        "p95_error_px": 535.6953149652581,
+        "max_error_px": 600.0,
+        "mean_latency_ms": 180.1438495333438,
+        "p95_latency_ms": 217.24817845002917
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.03333333333333333,
+        "accuracy_2px": 0.03333333333333333,
+        "accuracy_5px": 0.03333333333333333,
+        "accuracy_10px": 0.03333333333333333,
+        "mean_error_px": 377.89983340263603,
+        "median_error_px": 403.2626863825419,
+        "p95_error_px": 614.0736876019437,
+        "max_error_px": 634.4170552562407,
+        "mean_latency_ms": 175.4175014999722,
+        "p95_latency_ms": 205.52442564995772
+      }
+    },
+    "B3_center_aware_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.48333333333333334,
+        "accuracy_2px": 0.5,
+        "accuracy_5px": 0.5,
+        "accuracy_10px": 0.5,
+        "mean_error_px": 37.76813055437478,
+        "median_error_px": 11.718464553959167,
+        "p95_error_px": 105.70927740185459,
+        "max_error_px": 216.33885457772027,
+        "mean_latency_ms": 246.31241928334475,
+        "p95_latency_ms": 299.3871619999595
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.6666666666666666,
+        "accuracy_2px": 0.7,
+        "accuracy_5px": 0.7,
+        "accuracy_10px": 0.7,
+        "mean_error_px": 24.09494302453122,
+        "median_error_px": 0.7071067811865476,
+        "p95_error_px": 107.39999999999992,
+        "max_error_px": 128.0,
+        "mean_latency_ms": 240.7602603000138,
+        "p95_latency_ms": 290.5864996999639
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.3,
+        "accuracy_2px": 0.3,
+        "accuracy_5px": 0.3,
+        "accuracy_10px": 0.3,
+        "mean_error_px": 51.44131808421834,
+        "median_error_px": 55.75112610327732,
+        "p95_error_px": 102.96541413231786,
+        "max_error_px": 216.33885457772027,
+        "mean_latency_ms": 251.8645782666757,
+        "p95_latency_ms": 302.00529200004667
+      }
+    },
+    "NOVA_hybrid_roi_gate": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.9833333333333333,
+        "accuracy_2px": 1.0,
+        "accuracy_5px": 1.0,
+        "accuracy_10px": 1.0,
+        "mean_error_px": 0.3771236166328253,
+        "median_error_px": 0.7071067811865476,
+        "p95_error_px": 0.7071067811865476,
+        "max_error_px": 1.4142135623730951,
+        "mean_latency_ms": 172.66984546667268,
+        "p95_latency_ms": 207.19898929987718
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 1.0,
+        "accuracy_2px": 1.0,
+        "accuracy_5px": 1.0,
+        "accuracy_10px": 1.0,
+        "mean_error_px": 0.35355339059327384,
+        "median_error_px": 0.3535533905932738,
+        "p95_error_px": 0.7071067811865476,
+        "max_error_px": 0.7071067811865476,
+        "mean_latency_ms": 166.91219493334302,
+        "p95_latency_ms": 180.26853444999915
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.9666666666666667,
+        "accuracy_2px": 1.0,
+        "accuracy_5px": 1.0,
+        "accuracy_10px": 1.0,
+        "mean_error_px": 0.40069384267237695,
+        "median_error_px": 0.7071067811865476,
+        "p95_error_px": 0.7071067811865476,
+        "max_error_px": 1.4142135623730951,
+        "mean_latency_ms": 178.42749600000238,
+        "p95_latency_ms": 221.08380620003342
+      }
+    }
+  },
+  "holdout_translated": {
+    "B1_fixed_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.13333333333333333,
+        "accuracy_2px": 0.13333333333333333,
+        "accuracy_5px": 0.13333333333333333,
+        "accuracy_10px": 0.13333333333333333,
+        "mean_error_px": 332.91589390550155,
+        "median_error_px": 358.2815842010707,
+        "p95_error_px": 567.2738353963136,
+        "max_error_px": 655.4395471742607,
+        "mean_latency_ms": 34.76800013335151,
+        "p95_latency_ms": 46.3049887000011
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.23333333333333334,
+        "accuracy_2px": 0.23333333333333334,
+        "accuracy_5px": 0.23333333333333334,
+        "accuracy_10px": 0.23333333333333334,
+        "mean_error_px": 263.65239277489786,
+        "median_error_px": 287.4647771238722,
+        "p95_error_px": 493.4180481900249,
+        "max_error_px": 566.891965016263,
+        "mean_latency_ms": 35.15818083334731,
+        "p95_latency_ms": 48.272342000018384
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.03333333333333333,
+        "accuracy_2px": 0.03333333333333333,
+        "accuracy_5px": 0.03333333333333333,
+        "accuracy_10px": 0.03333333333333333,
+        "mean_error_px": 402.1793950361054,
+        "median_error_px": 421.1427122375443,
+        "p95_error_px": 610.6490596011658,
+        "max_error_px": 655.4395471742607,
+        "mean_latency_ms": 34.377819433355704,
+        "p95_latency_ms": 44.639524550007074
+      }
+    },
+    "B2_multiscale_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.13333333333333333,
+        "accuracy_2px": 0.13333333333333333,
+        "accuracy_5px": 0.13333333333333333,
+        "accuracy_10px": 0.13333333333333333,
+        "mean_error_px": 342.030623999541,
+        "median_error_px": 375.5325769647377,
+        "p95_error_px": 567.2738353963136,
+        "max_error_px": 655.4395471742607,
+        "mean_latency_ms": 175.47093851666583,
+        "p95_latency_ms": 208.47749734983833
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.23333333333333334,
+        "accuracy_2px": 0.23333333333333334,
+        "accuracy_5px": 0.23333333333333334,
+        "accuracy_10px": 0.23333333333333334,
+        "mean_error_px": 302.81474298664904,
+        "median_error_px": 358.2815842010707,
+        "p95_error_px": 535.6953149652581,
+        "max_error_px": 600.0,
+        "mean_latency_ms": 175.17095756666853,
+        "p95_latency_ms": 219.24933839989075
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.03333333333333333,
+        "accuracy_2px": 0.03333333333333333,
+        "accuracy_5px": 0.03333333333333333,
+        "accuracy_10px": 0.03333333333333333,
+        "mean_error_px": 381.2465050124331,
+        "median_error_px": 421.1427122375443,
+        "p95_error_px": 570.689763592945,
+        "max_error_px": 655.4395471742607,
+        "mean_latency_ms": 175.77091946666314,
+        "p95_latency_ms": 202.32987879993516
+      }
+    },
+    "B3_center_aware_ncc": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.4,
+        "accuracy_2px": 0.4166666666666667,
+        "accuracy_5px": 0.43333333333333335,
+        "accuracy_10px": 0.43333333333333335,
+        "mean_error_px": 42.795416320746405,
+        "median_error_px": 37.75166659259918,
+        "p95_error_px": 120.39999999999998,
+        "max_error_px": 216.33885457772027,
+        "mean_latency_ms": 257.7308532166588,
+        "p95_latency_ms": 315.6451204500513
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.5333333333333333,
+        "accuracy_2px": 0.5666666666666667,
+        "accuracy_5px": 0.5666666666666667,
+        "accuracy_10px": 0.5666666666666667,
+        "mean_error_px": 31.644444152661,
+        "median_error_px": 0.8535533905932737,
+        "p95_error_px": 124.39999999999998,
+        "max_error_px": 128.06248474865697,
+        "mean_latency_ms": 259.2879842333332,
+        "p95_latency_ms": 317.87518494999176
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.26666666666666666,
+        "accuracy_2px": 0.26666666666666666,
+        "accuracy_5px": 0.3,
+        "accuracy_10px": 0.3,
+        "mean_error_px": 53.9463884888318,
+        "median_error_px": 57.90565375004357,
+        "p95_error_px": 102.96541413231786,
+        "max_error_px": 216.33885457772027,
+        "mean_latency_ms": 256.1737221999844,
+        "p95_latency_ms": 301.6619888999685
+      }
+    },
+    "NOVA_hybrid_roi_gate": {
+      "ALL": {
+        "n": 60,
+        "accuracy_1px": 0.5,
+        "accuracy_2px": 0.5166666666666667,
+        "accuracy_5px": 0.5166666666666667,
+        "accuracy_10px": 0.5333333333333333,
+        "mean_error_px": 22.644905290976745,
+        "median_error_px": 1.290569415042095,
+        "p95_error_px": 79.52930520784612,
+        "max_error_px": 108.89674007976548,
+        "mean_latency_ms": 176.53710218335164,
+        "p95_latency_ms": 200.22298884993006
+      },
+      "DRAM": {
+        "n": 30,
+        "accuracy_1px": 0.6666666666666666,
+        "accuracy_2px": 0.6666666666666666,
+        "accuracy_5px": 0.6666666666666666,
+        "accuracy_10px": 0.6666666666666666,
+        "mean_error_px": 17.367633793312944,
+        "median_error_px": 0.7071067811865476,
+        "p95_error_px": 76.60359279501678,
+        "max_error_px": 108.89674007976548,
+        "mean_latency_ms": 173.96136129999982,
+        "p95_latency_ms": 193.6704994000365
+      },
+      "FinFET": {
+        "n": 30,
+        "accuracy_1px": 0.3333333333333333,
+        "accuracy_2px": 0.36666666666666664,
+        "accuracy_5px": 0.36666666666666664,
+        "accuracy_10px": 0.4,
+        "mean_error_px": 27.922176788640545,
+        "median_error_px": 22.54536101718726,
+        "p95_error_px": 77.5627212446469,
+        "max_error_px": 85.7962703152066,
+        "mean_latency_ms": 179.11284306670345,
+        "p95_latency_ms": 202.6552929499644
+      }
+    }
+  }
+}
