@@ -1,0 +1,229 @@
+You are my senior computer-vision engineer, AI/ML engineer, semiconductor wafer-inspection specialist, Python/Jupyter developer, software architect, debugging expert, and rigorous software testing lead. Your mission is to completely analyze, upgrade, debug, validate, and deliver my existing NOVA-Loc project using all source materials and code I provide. You must work on the actual existing implementation, not merely explain what I should do.
+
+PROJECT FILES AND SOURCE MATERIALS
+
+Inspect every accessible attachment, including the following known files:
+
+1. NOVA.ipynb
+2. NOVA-Loc_Precision_Navigation_Recovery.pptx
+3. NOVA-Loc_Navigation_Recovery.pptx
+4. Wafer_Inspection_Error_Recovery_Workflow.png
+5. Every other attached PDF, PPT, PPTX, image, dataset, Python file, configuration file, or project document relevant to NOVA-Loc.
+
+The listed filenames are the known project materials. Verify which files actually exist and are accessible. Do not assume that an unprovided PDF, dataset, pretrained model, or external resource exists. Explicitly identify any missing material that prevents a requirement from being validated.
+
+MY PRIMARY GOALS
+
+Understand the complete problem statement and requirements from all supplied PowerPoint presentations, PDFs, diagrams, and supporting materials; examine the existing NOVA.ipynb cell by cell; understand what the application currently does; integrate a meaningful and genuinely functional AI/ML feature; diagnose why different images, inputs, candidate locations, outputs, or results can appear on repeated executions; correct the actual causes of unintended inconsistency; improve the localization and recovery pipeline; execute and validate the updated code; and provide a complete, usable, tested deliverable with an engineering report.
+
+Do not ask me questions that can be answered by examining the supplied materials or executing the code. Make reasonable engineering decisions autonomously, document important assumptions, and continue as far as the available files, hardware, dependencies, and data permit. Never claim to have performed work that you have not actually performed.
+
+FIRST, INVESTIGATE THE ENTIRE PROJECT
+
+Inventory all supplied files and inspect their actual content. Read both PowerPoint presentations slide by slide, examining their text, diagrams, architecture, claimed features, equations, examples, evaluation claims, and proposed resolution workflow. Inspect every attached PDF, including relevant rendered pages and figures whenever text extraction does not adequately expose its content. Analyze the supplied workflow image as part of the specification. Inspect the entire notebook, including markdown cells, executable code cells, displayed outputs, imports, data paths, preprocessing, model usage, candidate ranking, coordinate calculations, visualizations, and recovery logic. Review any relevant data and supporting source code. If documents or slides contradict one another, identify the conflict instead of silently choosing or changing the original requirement.
+
+Use the supplied materials as the primary source of truth. Distinguish source-stated requirements from existing functionality, proposed improvements, engineering assumptions, and experimental findings. Reference actual filenames, slide numbers, PDF pages, notebook cells, and function names wherever available. Do not invent source content, implementation details, results, or requirements.
+
+Build a requirement-to-code mapping that identifies what each relevant source claims, where the corresponding functionality exists in the existing code, whether it is implemented, partially implemented, absent, incorrect, or unverified, what must change, and how the change will be tested. Preserve useful existing implementation and the project's intended purpose. Do not rewrite everything unnecessarily before understanding how the existing code works.
+
+UNDERSTAND THE NOVA-LOC PROBLEM
+
+Validate the precise requirements from the supplied materials. The apparent core problem is wafer-inspection localization failure caused by multiple interacting sources of ambiguity:
+
+PHYSICAL DRIFT: Thermal expansion, vibration, mechanical slack, or other displacement can move the actual target away from its expected coordinate.
+
+SCALE MISMATCH: The reference template and target region may appear at different sizes, requiring scale-aware matching and potentially multi-scale searches.
+
+IMAGE DEGRADATION: Noise, blur, contrast variation, missing edges, and degraded SEM imagery can weaken matching evidence.
+
+REPETITIVE STRUCTURES: DRAM grids, FinFET gate patterns, and other repetitive layouts can create visually similar candidate regions, causing false matches.
+
+COMPOUNDING AMBIGUITY: An expanded search region can contain many plausible candidates, while the highest raw similarity score may correspond to the wrong physical location.
+
+PROPOSED RESOLUTION: The NOVA-Loc concept describes multi-scale handling, coarse search, Top-K candidate generation, structural and geometric verification, an ML-based verification component, confidence estimation, sub-pixel refinement, and a bounded recovery loop.
+
+Treat this as an initial interpretation to verify against the source files. Do not assume that all these capabilities already exist in NOVA.ipynb or work correctly merely because they appear in the presentations.
+
+Explain and implement the distinction between visual similarity and correct physical localization, an image-matching score and a calibrated probability, candidate ranking and verified localization, integer-pixel coordinates and sub-pixel estimates, and synthetic demonstrations and validated performance on real semiconductor images.
+
+THE MOST IMPORTANT DEBUGGING REQUIREMENT: WHY RESULTS CHANGE BETWEEN RUNS
+
+Investigate the actual reason I can run my notebook multiple times and receive different images, apparent inputs, candidate locations, scores, or outputs. Do not guess that randomness is responsible. Inspect and demonstrate the underlying cause using the real code.
+
+Audit image discovery and input selection. Inspect glob.glob, os.listdir, file iterators, dataset loaders, random image selection, shuffled lists, generated image collections, changing working directories, fallback paths, and any code that chooses the next available image. Verify whether an image displayed as the input is actually the image processed by the algorithm. Sort file lists wherever stable ordering is required and explicitly display the resolved reference-image path and search-image path.
+
+Audit random operations, including the Python random module, NumPy random generation, random noise, synthetic images, random translation, rotation, blur, scale, crops, image augmentation, sampling, randomized train/test splits, stochastic optimization, model initialization, inference behavior, and any other random or nondeterministic operations. Identify the exact functions and notebook cells responsible for any observed variation.
+
+Audit mutable state, repeated execution, and execution order. Determine whether global variables persist between executions; arrays are modified in place; image preprocessing is accidentally applied multiple times; candidate lists accumulate previous candidates; score values or coordinate offsets are modified repeatedly; recovery-loop parameters carry over into subsequent runs; notebook cells rely on out-of-order execution; outputs are stale; cached values are reused; intermediate files are overwritten; or templates and search images become mismatched.
+
+Audit visualization and saving behavior. Determine whether changing plots, resized previews, image normalization, color conversion, interpolation, random visualization samples, cached outputs, or file overwriting makes it appear that the underlying image or result has changed. Distinguish actual algorithmic variation from display-only variation and from outputs that are not current.
+
+Audit the AI/ML framework and numerical execution if applicable. Inspect random seeds, model training versus inference mode, dropout, GPU or CPU differences, parallel execution, deterministic-algorithm settings, library behavior, and floating-point precision. Configure reproducibility only where technically supported, and explicitly document any remaining nondeterminism.
+
+Produce a root-cause analysis for every confirmed inconsistency. For each issue, state the observed symptom, the exact underlying cause, the responsible cell or function, why it produces different results, the actual correction implemented, and the test that demonstrates the correction. Label any suspected but unconfirmed cause honestly.
+
+IMPLEMENT TWO CLEAR EXECUTION MODES
+
+Create an explicitly configurable reproducibility mode and a separate experimental mode. For example, use RUN_MODE = "reproducible" and RANDOM_SEED = 42, adapted to the existing architecture.
+
+In reproducibility mode, use explicitly selected input and reference images, fixed preprocessing settings, controlled random generators, sorted file lists, deterministic candidate ordering, stable tie-breaking, reset run-specific state, consistent configuration, recorded software versions, and traceable output paths. Repeatable output must arise from actual deterministic processing, not from hardcoded images, coordinates, scores, or cached successful answers.
+
+In experimental mode, permit randomized synthetic generation, data augmentation, stochastic tests, and other deliberately variable experiments. Make their parameters and seeds configurable. Record the actual parameters used in every run.
+
+The behavior must be honest: the same inputs and settings should produce the same outputs wherever the implementation and underlying operations support deterministic execution; different selected inputs must still produce outputs reflecting those different inputs. Document any unavoidable hardware-dependent or numerical differences rather than promising unsupported bitwise reproducibility.
+
+Run the same image/template pair at least five times under identical reproducible settings. Record input paths, file hashes, selected candidates, similarity scores, verification scores, confidence output, final coordinates, execution time, and output filenames. Compare the results with exact equality where appropriate and documented tolerances for numerical operations.
+
+Then deliberately change the input image and demonstrate that the actual new image is loaded and processed. Verify that missing input files trigger an explicit error or clearly identified failure result instead of silently reusing a previous image.
+
+Integrate these checks into automated tests so a future code change can reveal regressions.
+
+IMPLEMENT A GENUINE AI/ML FEATURE
+
+Integrate an appropriate AI/ML capability into the actual NOVA-Loc pipeline. Do not merely label conventional image processing as artificial intelligence, add an unrelated chatbot, or draw a model in a diagram.
+
+First determine what the existing implementation already contains, which data is available, what libraries and hardware are usable, and whether labeled examples exist. Preserve useful conventional computer-vision methods and augment them where necessary.
+
+Evaluate a practical tri-factor candidate-verification system with three distinct evidence sources:
+
+1. STRUCTURAL CONSISTENCY: Evaluate local structures, edges, periodic patterns, texture, or other relevant visual features shared by the reference and candidate.
+2. GEOMETRIC CONSISTENCY: Evaluate relative feature positions, orientation, scale, pitch, periodicity, spatial relationships, and plausible transformations.
+3. ML-BASED VERIFICATION OR RANKING: Use an actual learned model to distinguish plausible target locations from visually similar false candidates.
+
+The design should be integrated with the existing algorithm rather than implemented as an isolated demonstration. Keep candidate scores, intermediate evidence, rejection reasons, model outputs, and final decisions available for inspection.
+
+Choose the AI implementation based on feasibility and evidence. A lightweight classifier, such as logistic regression, a random forest, or another suitable candidate-level model, may be preferable if the available data supports it. Evaluate a pretrained local-feature or deep-learning approach only if the images, computational environment, dependencies, available weights, and requirements justify the choice. Do not introduce a large neural network merely to make the project look more advanced.
+
+Determine whether suitable labeled data exists before attempting training. Never fabricate real wafer labels, measurements, ground-truth coordinates, model weights, or performance results. Synthetic training examples can be used for a clearly labelled prototype demonstration, but synthetic accuracy cannot be presented as evidence of real-world semiconductor inspection performance.
+
+If no appropriate dataset exists, implement the strongest honest architecture the current resources support, including a configurable ML interface and a functional ML demonstration if feasible. Explain precisely whether a model was actually trained, whether it was evaluated on independent data, whether pretrained weights were available, and what must happen before it can be trusted on real wafer images.
+
+Avoid data leakage between highly similar crops, duplicate images, templates, or images from the same wafer when the evaluation requires sample-level or wafer-level independence. Use an appropriate validation strategy and record the split method.
+
+Do not confuse a heuristic score with a calibrated probability. If the code produces a percentage, identify whether it represents a probability, a normalized score, a relative ranking, or a heuristic confidence indicator. Implement calibration only when appropriate data is available and it can be tested.
+
+The new AI component must influence candidate verification or ranking in a meaningful, traceable manner. When ML is disabled or its dependency is unavailable, use an explicitly labelled fallback if appropriate. Never pretend the ML stage ran when it did not. Explain the fallback behavior and its limitations.
+
+IMPLEMENT OR REPAIR THE COMPLETE MULTI-STAGE PIPELINE
+
+Compare the current notebook against the intended NOVA-Loc workflow and implement or correct the functionality that is actually required.
+
+Scale-aware handling and coarse search: Validate input images and template dimensions, normalize supported image formats appropriately, build a suitable image pyramid or multi-scale search, handle justified scale ranges, search relevant drift areas, maintain consistent coordinate transformations, and avoid unnecessary exhaustive computation. Handle invalid images, oversized templates, and empty search areas explicitly.
+
+Top-K candidate generation: Retain a configurable number of promising candidates instead of blindly trusting one maximum score. Remove redundant or overlapping candidates where appropriate, preserve raw scores, use deterministic tie-breaking, track candidates across scales, map every coordinate back to the original search image, and record why candidates are retained or rejected.
+
+Structural verification: Evaluate appropriate local image evidence, patterns, edges, and relevant structure. Expose interpretable diagnostics and do not confuse one visual matching score with sufficient evidence of a correct match.
+
+Geometric verification: Check spatial relationships and plausible geometry using methods justified by the actual images and requirements. Account for scale, translation, orientation, and coordinate conventions wherever relevant. Avoid rules that only work on the synthetic example used for development.
+
+ML verification: Execute the actual model when enabled, verify the input feature schema, report model availability and inference status, and integrate its results into candidate ranking or verification. Keep heuristic and learned evidence distinguishable.
+
+Confidence estimation: Evaluate the separation between competing candidates, structural support, geometric consistency, ML evidence, and other defensible uncertainty indicators. Make thresholds configurable and document their meaning. Do not assume that a threshold works across all wafers or imaging conditions without validation.
+
+Sub-pixel refinement: When justified by a verified match and the available image information, refine the predicted integer-pixel location using an appropriate local interpolation, correlation-peak fitting, or other suitable method. Return integer-pixel and refined coordinates separately. Report the estimated refinement displacement and clearly identify the coordinate system. Never claim sub-pixel physical accuracy without ground-truth validation and suitable calibration.
+
+Recovery loop: When the match is ambiguous or confidence is insufficient, expand the search area within configured limits, increase effective resolution where beneficial, retrieve or rerank candidates, and rerun relevant verification. Record every attempt, including search radius, image scale, candidate count, scores, confidence indicator, and stopping reason. Set maximum attempts and search limits to prevent endless loops and repeated work with no benefit. Stop when a defensible success criterion is reached or the search limits are exhausted. Return a clear low-confidence or failure result if localization cannot be supported. Never manufacture a successful match simply because the workflow is expected to return coordinates.
+
+Preserve the source-defined intended workflow and distinguish genuinely implemented capabilities from planned improvements.
+
+VALIDATE LOCALIZATION ACCURACY AND FAILURE CASES
+
+Determine whether true target coordinates or suitable ground-truth labels are available. If they exist, use them to calculate localization error in pixels, top-1 success rate, false-positive behavior, and other relevant metrics. Convert pixels into physical units only when a valid calibration is provided and verified. Use consistent evaluation criteria and the same test examples for baseline and enhanced implementations.
+
+If real ground truth is missing, use clearly identified synthetic transformations where feasible. Record the original image, known applied transformation, expected location, recovered location, and error. Do not report synthetic results as real-world wafer accuracy. Explicitly identify what data is needed to validate real inspection performance.
+
+Test known translations, drift, scale changes, blur, noise, contrast variations, partial occlusion, missing edges, repeated layouts, confusing lookalike candidates, ambiguous matches, high candidate density, small images, templates larger than the search region, empty regions, corrupted images, missing files, and failure to achieve adequate confidence.
+
+Use a fixed and reproducible benchmark for fair comparisons. Ensure that the original and enhanced pipelines are evaluated on equivalent inputs. Do not change the difficulty or composition of the test set in a way that artificially favors the new implementation.
+
+Measure appropriate metrics only when supporting data is available: top-1 localization accuracy, recall@K, precision and recall for false-match detection, false-positive rate, pixel localization error, confidence calibration where justified, recovery frequency, runtime, and memory usage. Record the number of examples and evaluation conditions. If a metric cannot legitimately be calculated, state why rather than inventing a number.
+
+VISUALIZATION AND TRACEABILITY
+
+Make the notebook show what the application is actually processing. Include the selected reference and search image, their resolved file paths, image dimensions, preprocessing configuration, scale range, initial search region, Top-K candidate locations, candidate scores, structural and geometric evidence, ML results, confidence interpretation, selected match, and final coordinates. Display the recovery history when a recovery loop is triggered.
+
+Where the necessary information exists, visualize the ground-truth location and measured error. Clearly distinguish actual user-provided images from generated synthetic examples. Do not let old notebook outputs masquerade as fresh results.
+
+Save results using a predictable, configurable output directory and a traceable run identifier. Prevent accidental overwriting or mixing outputs from different input pairs. Produce machine-readable diagnostics where useful, such as JSON or CSV records, and ensure that the recorded image names and hashes match the actual inputs.
+
+NOTEBOOK MODIFICATION AND CODE QUALITY
+
+Edit the actual existing NOVA.ipynb. Create a new enhanced notebook called NOVA_Loc_AI_Enhanced.ipynb and preserve the original notebook as an unchanged backup. If a different filename is necessary, document it.
+
+Organize the enhanced notebook into understandable sections covering the project, configuration, dependency checks, input loading, validation, visualization, preprocessing, multi-scale search, Top-K candidates, structural verification, geometric verification, ML verification, confidence estimation, sub-pixel refinement, recovery logic, evaluation, reproducibility experiments, automated testing, limitations, and instructions.
+
+Keep the source modular where practical, using clear functions, sensible names, useful type hints, docstrings, comments, and meaningful error handling. Make paths configurable, avoid unnecessary dependency installation, and support offline execution wherever feasible.
+
+Fix execution-order problems, stale-state bugs, inconsistent preprocessing, hidden hardcoded paths, coordinate-system mistakes, inappropriate fallbacks, and other defects actually found in the notebook. Ensure every stage receives the intended image and configuration.
+
+Do not add unused libraries or pretend that a dependency is installed. Inspect the actual runtime and available libraries. Do not rely on nonexistent model files, unavailable hardware, undocumented environment variables, or hidden state left over from an earlier session. Record any required installations or resources.
+
+If supporting Python modules, test files, or configuration files are necessary, create and include them. Keep the notebook's dependencies and file references consistent with the delivered project. Do not overwrite the original notebook during development.
+
+EXECUTE, TEST, FIX, AND REPEAT
+
+After implementing changes, execute the updated notebook from a clean kernel and in the correct cell order wherever the environment supports it. Run an automated test suite, inspect the results, fix failures, rerun the affected tests, and then execute the entire test suite again after the final modifications.
+
+At minimum, implement and execute tests for:
+
+- Successful basic end-to-end execution.
+- Same input/template and identical configuration repeated at least five times.
+- Different images actually being loaded and processed.
+- Missing files producing clear failures instead of silent reuse.
+- Deterministic candidate ranking and tie-breaking.
+- Multi-scale search and known scale transformations.
+- Known positional translations and coordinate accuracy.
+- Coordinate consistency across image pyramids, crops, resizing, and original images.
+- Noise, blur, contrast variation, and missing image details.
+- Repetitive structures and false-match ambiguity.
+- Recovery-loop termination and maximum search limits.
+- Explicit low-confidence behavior.
+- Actual ML inference when the feature is enabled.
+- Correct fallback reporting when the model is unavailable.
+- Valid result structures, output files, and coordinate ranges.
+- Corrupted inputs, incompatible dimensions, empty candidate sets, and invalid configuration.
+- Regression testing of the original application's supported behavior.
+- Runtime and resource behavior where measurable.
+
+Tests must actually run to be marked as passing. Record expected behavior, observed behavior, result, and supporting evidence. If a dependency, model, dataset, GPU, hardware interface, or execution environment is unavailable, mark the corresponding test as blocked and explain the exact reason. Do not pass off a code review as an execution test.
+
+Use an iterative engineering cycle: inspect, implement, execute, observe, diagnose, correct, retest, and review. Repeat as necessary until no known fixable high-priority defect remains within the available environment and scope. Do not continue modifying code pointlessly once the evidence supports a stable result. If complete validation cannot be achieved, deliver the best verified implementation and precisely disclose what remains unverified.
+
+BASELINE COMPARISON AND HONEST PERFORMANCE REPORTING
+
+Where the original implementation can run, compare it with the enhanced version on the same fixed test cases and configurations. Report measured localization error, candidate hit rate, top-1 success, false-positive behavior, confidence behavior, recovery frequency, runtime, and memory use as applicable.
+
+Include representative successful and failed cases. Explain whether improvements were measured, statistically meaningful, limited to synthetic data, or still hypothetical. Do not invent baselines, accuracy, precision, speed gains, calibration results, or hardware performance.
+
+FINAL PROJECT DELIVERABLES
+
+Create and verify the following files wherever technically possible:
+
+1. NOVA_Loc_AI_Enhanced.ipynb — the actual modified notebook.
+2. NOVA_Loc_Test_Report.md — the source audit, requirements mapping, root-cause analysis, implementation changes, automated test results, baseline comparison, and limitations.
+3. README.md — installation, dependencies, project structure, data requirements, configuration, running instructions, and troubleshooting.
+4. requirements.txt or an equivalent dependency manifest containing the actual required packages and appropriate verified version constraints.
+5. Automated test files, such as test_nova_loc.py, and any supporting test configuration.
+6. Necessary supporting Python modules, configuration files, or other source files used by the enhanced notebook.
+7. Valid sample result images and machine-readable diagnostics where the actual inputs permit them.
+8. A ZIP archive containing the complete runnable deliverable if practical.
+
+Reopen the generated notebook and supporting files. Verify notebook JSON validity, file references, imports, output directories, execution order, and dependency consistency. Ensure another developer can understand how to run the project without relying on your temporary variables or previous notebook state.
+
+FINAL REPORT FORMAT
+
+Conclude with a clear engineering report explaining what the original problem is according to the supplied materials, what the original notebook actually implemented, which requirements were missing or incorrect, the confirmed reasons results changed between executions, the code changes made to solve them, the AI/ML technique implemented and its real limitations, the final pipeline behavior, measured results, test outcomes, unresolved blockers, and exact instructions for running the project.
+
+For the inconsistency problem, directly answer: Why was the same or different image appearing in repeated runs? Was the cause random image selection, synthetic generation, mutable state, notebook execution order, stale outputs, nondeterministic computation, or something else? Which specific code caused it? What was changed? What test proves the correction? If the evidence does not establish a cause, explicitly say so and explain what prevented confirmation.
+
+For the AI component, directly answer: What AI/ML feature was added? Where is it executed? What input does it consume? What output does it produce? How does it affect candidate ranking or verification? Was it trained on real labeled data, synthetic data, or not trained? How was it tested? What real-world claims remain unverified?
+
+For reproducibility, directly answer whether five identical runs produced the same results, what values were compared, whether different images produced appropriately different results, and whether any remaining differences are expected or indicate unresolved problems.
+
+FINAL ACCEPTANCE REQUIREMENTS
+
+The project is complete only to the extent supported by evidence that the source materials were inspected, the original notebook was audited, genuine defects were corrected, the AI feature actually executes when enabled, inputs and outputs are traceable, reproducibility is validated where supported, coordinate transformations are consistent, ambiguous matches are handled honestly, automated tests were executed, and the deliverables are usable.
+
+Never hardcode the correct output merely to pass tests. Never fabricate datasets, labels, measurements, model weights, accuracy, successful test outcomes, or completed work. Never claim that a notebook ran if it was only edited. Never claim that the system is production-ready for semiconductor manufacturing without suitable real-world validation.
+
+Begin immediately by inspecting all accessible files and the existing notebook. Then carry out the entire engineering workflow in this same task. Do not stop at the research, explanation, architecture, or proposed code stage. Modify the real files, execute and test the implementation to the extent possible, correct confirmed problems, and finish by providing the generated artifacts and a truthful report of completed work and remaining limitations.
