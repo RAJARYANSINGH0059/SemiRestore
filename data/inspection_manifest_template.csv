@@ -1,0 +1,2 @@
+sample_id,lot_id,wafer_id,architecture,die_row,die_col,chip_id,reference,search,gt_x,gt_y
+example_001,NOT_PROVIDED,NOT_PROVIDED,UNKNOWN,NOT_PROVIDED,NOT_PROVIDED,CHIP_0001,/content/data/reference.png,/content/data/search.png,,
