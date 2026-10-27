@@ -1,1 +1,11 @@
-The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
+numpy>=1.24
+Pillow>=9.5
+opencv-python>=4.8
+pytest>=7.4
+pandas>=2.0
+matplotlib>=3.7
+PyYAML>=6.0
+# Used by the notebook's optional experimental candidate-ranker ablation.
+# The evaluator-facing src/infer.py does not load this model.
+scikit-learn>=1.2
+joblib>=1.2
