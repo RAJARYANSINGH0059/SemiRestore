@@ -1,0 +1,37 @@
+sources:
+  - name: refics
+    path: data/sources/refics
+    role: structure_pretraining
+    weight: 0.25
+  - name: carinthia
+    path: data/sources/carinthia
+    role: real_sem_domain
+    weight: 0.15
+  - name: edmond_metal
+    path: data/sources/edmond_metal
+    role: real_ic_structure
+    weight: 0.15
+  - name: cheng_poly
+    path: data/sources/cheng_poly
+    role: polysilicon_structure
+    weight: 0.10
+  - name: finfet
+    path: data/sources/finfet
+    role: finfet_structure
+    weight: 0.10
+  - name: nffa_sem
+    path: data/sources/nffa_sem
+    role: sem_domain_pretraining
+    weight: 0.10
+  - name: bath_periodic
+    path: data/sources/bath_periodic
+    role: periodicity_calibration
+    weight: 0.05
+  - name: gaas_periodic
+    path: data/sources/gaas_periodic
+    role: periodicity_ood
+    weight: 0.05
+  - name: nanopattern_aux
+    path: data/sources/nanopattern_aux
+    role: optional_auxiliary
+    weight: 0.05
