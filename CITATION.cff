@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use SemiRestore, cite the repository and the original NOVA-Loc source materials described in docs/references.md."
+title: "SemiRestore: Semiconductor Localization and Inspection Research Toolkit"
+version: 0.1.0
+date-released: 2026-10-27
+repository-code: "https://github.com/RAJARYANSINGH0059/SemiRestore"
+type: software
