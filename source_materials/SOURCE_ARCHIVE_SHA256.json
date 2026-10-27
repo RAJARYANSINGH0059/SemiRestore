@@ -1,0 +1,20 @@
+{
+  "purpose": "Provenance checksums for the original user-supplied ZIP archives. Large prototype ZIP is not duplicated because it is unpacked in the project.",
+  "sources": {
+    "NOVA-Loc-source.zip": {
+      "sha256": "332cba1961b6ec3b0c952094ffe7a81e2f9ad72b35022da534eeb5a3e0727f71",
+      "bytes": 46434,
+      "included_raw_archive": true
+    },
+    "NOVA-Loc-prototype.zip": {
+      "sha256": "4ed9a556e961956e301ec141f3acfa09fec09f4f7561aecd4f0a40f388a219bb",
+      "bytes": 50373100,
+      "included_raw_archive": false
+    },
+    "NOVA-Loc-unified-dataset-factory.zip": {
+      "sha256": "612d7fbbc398166befed4f53a624903359339efc3f54e26c976afd48a52b4e77",
+      "bytes": 6681,
+      "included_raw_archive": true
+    }
+  }
+}
