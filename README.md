@@ -38,7 +38,7 @@ The core objective is **repeatable localization with traceable uncertainty and f
 
 The supplied workflow illustration is retained here in compressed form:
 
-![Supplied wafer inspection workflow](docs/assets/wafer_inspection_workflow.jpg)
+**Workflow diagram:** The supplied workflow and presentation audit are documented in [`docs/source_deck_audit.md`](docs/source_deck_audit.md) and [`docs/proposal.md`](docs/proposal.md).
 
 ### What is and is not meant by “defect detection”
 
@@ -175,7 +175,7 @@ python scripts/build_inspection_report.py \
 
 Do not set dimensions unless they are accurate for the input image. The bundled synthetic examples default to one inspection field per image, so their local coordinates equal their image coordinates.
 
-![Example localized inspection image](docs/assets/inspection_overlay_example.jpg)
+**Example output:** Run the notebook or `scripts/build_inspection_report.py` to generate the annotated reference/search overlay and coordinate CSVs in `results/inspection_report/`.
 
 ### Coordinate semantics
 
