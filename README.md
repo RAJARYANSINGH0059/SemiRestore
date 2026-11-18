@@ -363,3 +363,11 @@ Generated baseline reference/search images are intentionally ignored by Git and 
 The project combines user-supplied `NOVA-Loc-source.zip`, `NOVA-Loc-prototype.zip` (its generated image pair set is reproduced from source rather than duplicated in this repo), `NOVA-Loc-unified-dataset-factory.zip`, `RESULTS.md`, `experimental_protocol.md`, `math.md`, the original notebook, two presentation decks and a workflow diagram. Source-derived requirements and slide summaries are captured in `docs/proposal.md`, `docs/round1_slides.md`, `docs/math.md`, `docs/experimental_protocol.md`, `docs/NOVA_Loc_Test_Report.md`, and `docs/supplied/`.
 
 External dataset citations are listed in `external/unified_dataset_factory/docs/SOURCES.md` and `docs/references.md`. Check the latest source records for each dataset's terms before acquiring/redistributing image files. See [`LICENSE_STATUS.md`](LICENSE_STATUS.md): no project-wide license was provided, so this repository does not invent one.
+
+## Latest SemiRestore notebook artifacts
+
+- [Synthetic holdout dataset provenance](data/synthetic/semirestore_holdout_22089/README.md)
+- [Sample manifest (gzip-compressed CSV)](data/synthetic/semirestore_holdout_22089/manifest.csv.gz)
+- [Notebook extraction and evaluation report](docs/semirestore_notebook_extraction_report.md)
+
+The checked-in manifest describes 64 procedurally generated DRAM/FinFET pairs. It is not a real SEM dataset. The 128 PNG image-pair files and full extracted project ZIP are not part of this commit; they remain in the local release bundle pending binary upload.
