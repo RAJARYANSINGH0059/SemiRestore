@@ -5,6 +5,8 @@
 [![Tests](https://github.com/RAJARYANSINGH0059/SemiRestore/actions/workflows/tests.yml/badge.svg)](https://github.com/RAJARYANSINGH0059/SemiRestore/actions/workflows/tests.yml)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RAJARYANSINGH0059/SemiRestore/blob/main/notebooks/SemiRestore_Research.ipynb)
 
+[Open the shared Google Colab notebook](https://colab.research.google.com/drive/1ozJ77JWP25yBjdl3Mekdaf9EuMCbdQ?usp=sharing) · [View the version-controlled notebook in GitHub](https://github.com/RAJARYANSINGH0059/SemiRestore/blob/main/notebooks/SemiRestore_Research.ipynb)
+
 > **Scope:** this repository is a research notebook + Python command-line inference workflow. It does **not** start a web UI, web server, or persistent API. Generated DRAM/FinFET pairs are synthetic SEM-inspired images, not real microscope captures. Do not treat candidate anomalies as confirmed defects or the current localization score as industrial/physical accuracy.
 
 ## Contents
@@ -73,7 +75,7 @@ The proposed context-ring score in the original protocol needs a larger referenc
 
 ## Quick start in Google Colab
 
-1. Open the notebook from GitHub using the **Open in Colab** badge above (once this repository exists on GitHub), or open `notebooks/SemiRestore_Research.ipynb` via **Colab → File → Upload notebook**.
+1. Open the [shared Google Colab notebook](https://colab.research.google.com/drive/1ozJ77JWP25yBjlvdl3Mekdaf9EuMCbdQ?usp=sharing). The repository also contains a separate, version-controlled notebook at [`notebooks/SemiRestore_Research.ipynb`](notebooks/SemiRestore_Research.ipynb); that file has not yet been synchronized with the shared Drive copy.
 2. In Colab, click **Runtime → Run all**. The bootstrap cell first tries to clone `https://github.com/RAJARYANSINGH0059/SemiRestore.git`; if that repository is not available yet, it falls back to a project ZIP upload.
 3. The bootstrap checks required imports and installs `requirements.txt` only if packages are missing.
 4. It creates only missing synthetic sample images using the fixed-seed source generator; any existing image files are preserved.
