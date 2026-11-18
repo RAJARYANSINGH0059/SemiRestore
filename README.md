@@ -368,6 +368,8 @@ External dataset citations are listed in `external/unified_dataset_factory/docs/
 
 - [Synthetic holdout dataset provenance](data/synthetic/semirestore_holdout_22089/README.md)
 - [Sample manifest (gzip-compressed CSV)](data/synthetic/semirestore_holdout_22089/manifest.csv.gz)
+
+- [Per-sample localization errors (gzip-compressed CSV)](results/semirestore/notebook_per_sample_errors.csv.gz)
 - [Notebook extraction and evaluation report](docs/semirestore_notebook_extraction_report.md)
 
 The checked-in manifest describes 64 procedurally generated DRAM/FinFET pairs. It is not a real SEM dataset. The 128 PNG image-pair files and full extracted project ZIP are not part of this commit; they remain in the local release bundle pending binary upload.
